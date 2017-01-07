@@ -1,0 +1,9 @@
+{
+  'plugins': ['transform-react-jsx'],
+  'ignore': [
+    'foo.js',
+    'bar/**/*.js'
+  ],
+      'presets' : ['es2015', 'react', 'airbnb']
+  }
+  
