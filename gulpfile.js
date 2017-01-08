@@ -15,7 +15,7 @@ gulp.task('default', ['browser-sync', 'lint', 'watchfiles', 'test', 'webpack', '
 gulp.task('watchfiles', function () {
     gulp.watch(editFiles, ['lint', 'test', 'webpack'])
 })
-gulp.task('travis', ['lint', 'test', 'webpack', 'appengine'], function () {
+gulp.task('travis', ['lint', 'test', 'webpack'], function () {
     console.log('travis task')
 })
 gulp.task('node-serve', function () {
