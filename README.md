@@ -1,5 +1,7 @@
 # goatstone.react-rx-todo
 
+[![Build Status](https://travis-ci.org/goatstone/react-rx-todo.svg?branch=trav)](https://travis-ci.org/goatstone/react-rx-todo)
+
 ## Another Todo list in React
 
 The purpose of this repository is to provide an example of a certain kind of architecture using React JS, Reactive Rx, the Material-UI component library and ES6.  It can be used as a starting point or a reference for similar projects. It can be used in order to test these technologies out in order to help you make decisions concerning future projects. It should be a documentation of best practices.
