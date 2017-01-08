@@ -1,5 +1,5 @@
 var log = function (x) {
-    const devMode = true
+    const devMode = false
     const a = Array.from(arguments)
     if (devMode) {
         console.log(...a)

@@ -53,11 +53,17 @@ class App extends React.Component {
             })
         }, err => log('e', err), () => log('c'))
         // generate some list items
-        ;[11, 22, 1, 2, 3].forEach(x => {
-            this.props.eventEmitter.emit('list', {
-                action: 'add',
-                item: {title: x, description: 'd', importance: 0}
-            })
+        this.props.eventEmitter.emit('list', {
+            action: 'add',
+            item: {title: 'Click on the plus symbol and make some todo items', description: 'try to do this soon', importance: 0}
+        })
+        this.props.eventEmitter.emit('list', {
+            action: 'add',
+            item: {title: 'Make list items', description: 'OK', importance: 1}
+        })
+        this.props.eventEmitter.emit('list', {
+            action: 'add',
+            item: {title: 'Delete some list items when done', description: 'This should not take too long', importance: 2}
         })
         // dialogStream
         this.props.dialogStream.filter(x => x.content === 'settings')
