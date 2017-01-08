@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "6"
+before_script:
+  - npm install -g gulp
+install:
+  - npm install
+  - ln -s /home/travis/build/goatstone/react-rx-todo/goatstone /home/travis/build/goatstone/react-rx-todo/node_modules/goatstone
+script: gulp travis
