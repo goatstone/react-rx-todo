@@ -1,6 +1,6 @@
 # goatstone.react-rx-todo
 
-[![Build Status](https://travis-ci.org/goatstone/react-rx-todo.svg?branch=trav)](https://travis-ci.org/goatstone/react-rx-todo)
+[![Build Status](https://travis-ci.org/goatstone/react-rx-todo.svg?branch=master)](https://travis-ci.org/goatstone/react-rx-todo)
 
 ## Another Todo list in React
 
