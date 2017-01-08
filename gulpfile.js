@@ -13,7 +13,7 @@ var editFiles = [
 ]
 gulp.task('default', ['browser-sync', 'lint', 'watchfiles', 'test', 'webpack', 'node-serve'])
 gulp.task('watchfiles', function () {
-    gulp.watch(editFiles, ['lint', 'test', 'webpack'])
+    gulp.watch(editFiles, ['lint', 'webpack']) // 'test'
 })
 gulp.task('appengine', function () {
     return gulp.src('goatstone/server/appengine/*')

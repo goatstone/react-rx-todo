@@ -19,13 +19,21 @@ class App extends React.Component {
         this.count = 0
         this.state = {
             mainList: [],
-            isOpenSnackBar: true,
             isOpenDialog: false,
-            msg: 'Welcome To Make A List!',
+            isOpenSnackBar: true,
+            msg: '',
             dialogContent: <About />
         }
     }
     componentDidMount () {
+        // messageStream
+        this.props.messageStream
+        .subscribe(x => {
+            this.setState({
+                isOpenSnackBar: true,
+                msg: x.message
+            })
+        })
         // listStream
         this.props.listStream
         .filter(x => x.action === 'add')
@@ -35,9 +43,10 @@ class App extends React.Component {
             this.arr.push(item)
             this.setState({
                 mainList: this.arr,
-                isOpenDialog: false,
-                isOpenSnackBar: true,
-                msg: 'Item added'
+                isOpenDialog: false
+            })
+            this.props.eventEmitter.emit('message', {
+                message: 'Item added'
             })
         }, err => log('e', err), () => log('c'))
         this.props.listStream
@@ -47,24 +56,12 @@ class App extends React.Component {
             const i = this.arr.findIndex(x => x.id === id)
             this.arr.splice(i, 1)
             this.setState({
-                mainList: this.arr,
-                isOpenSnackBar: true,
-                msg: 'Item removed'
+                mainList: this.arr
+            })
+            this.props.eventEmitter.emit('message', {
+                message: 'Item removed'
             })
         }, err => log('e', err), () => log('c'))
-        // generate some list items
-        this.props.eventEmitter.emit('list', {
-            action: 'add',
-            item: {title: 'Click on the plus symbol and make some todo items', description: 'try to do this soon', importance: 0}
-        })
-        this.props.eventEmitter.emit('list', {
-            action: 'add',
-            item: {title: 'Make list items', description: 'OK', importance: 1}
-        })
-        this.props.eventEmitter.emit('list', {
-            action: 'add',
-            item: {title: 'Delete some list items when done', description: 'This should not take too long', importance: 2}
-        })
         // dialogStream
         this.props.dialogStream.filter(x => x.content === 'settings')
         .subscribe(x => {
@@ -111,6 +108,20 @@ class App extends React.Component {
                 isOpenDialog: true
             })
         }, err => log('e', err), () => log('c'))
+
+        // generate some list items
+        this.props.eventEmitter.emit('list', {
+            action: 'add',
+            item: {title: 'Click on the plus symbol and make some todo items', description: 'try to do this soon', importance: 0}
+        })
+        this.props.eventEmitter.emit('list', {
+            action: 'add',
+            item: {title: 'Make list items', description: 'OK', importance: 1}
+        })
+        this.props.eventEmitter.emit('list', {
+            action: 'add',
+            item: {title: 'Delete some list items when done', description: 'This should not take too long', importance: 2}
+        })
     }
     render () {
         const actions = [
