@@ -72,7 +72,7 @@ class App extends React.Component {
             const makeListControl = <MakeListControl
                 eventEmitter={this.props.eventEmitter}
                 text={{
-                    title: 'TODO',
+                    title: 'Add a todo',
                     inputs: {
                         title: {
                             hintText: 'Add a title',

@@ -13,8 +13,6 @@ var editFiles = [
 ]
 gulp.task('default', ['browser-sync', 'lint', 'watchfiles', 'test', 'webpack', 'node-serve'])
 gulp.task('watchfiles', function () {
-    console.log(path.join(__dirname, 'xxx'))
-    console.log('www')
     gulp.watch(editFiles, ['lint', 'test', 'webpack'])
 })
 gulp.task('travis', ['lint', 'test', 'webpack', 'appengine'], function () {

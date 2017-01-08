@@ -35,6 +35,8 @@ This repository is provided as an example of ES6 best practices.
 
 `git clone https://github.com/goatstone/react-rx-todo.git`
 
+`cd react-rx-todo`
+
 `npm install`
 
 Enable absolute path namespace with a sym link
@@ -44,8 +46,6 @@ Enable absolute path namespace with a sym link
 On my Linux system it looks like this:
 
 `ln -s /home/goat/projects/react-rx-todo/goatstone /home/goat/projects/react-rx-todo/node_modules/goatstone`
-
-`cd react-rx-todo`
 
 `gulp`
 
