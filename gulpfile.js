@@ -2,8 +2,6 @@ var gulp = require('gulp')
 var webpack = require('webpack-stream')
 const eslint = require('gulp-eslint')
 var mocha = require('gulp-mocha')
-var exec = require('child_process').exec
-const path = require('path')
 var editFiles = [
     'goatstone/**/*.js',
     'goatstone/**/*.jsx',
@@ -11,25 +9,13 @@ var editFiles = [
     'test/**/*.js',
     'webpack.config.js'
 ]
-gulp.task('default', ['browser-sync', 'lint', 'watchfiles', 'test', 'webpack', 'node-serve'])
+gulp.task('default', ['lint', 'watchfiles', 'test', 'htmlpack', 'webpack'])
 gulp.task('watchfiles', function () {
-    gulp.watch(editFiles, ['lint', 'webpack']) // 'test'
+    gulp.watch(editFiles, ['lint', 'test', 'webpack', 'htmlpack'])
 })
-gulp.task('appengine', function () {
-    return gulp.src('goatstone/server/appengine/*')
-        .pipe(gulp.dest('dist/'))
-})
-gulp.task('travis', ['lint', 'test', 'webpack'], function () {
-    console.log('travis task')
-})
-gulp.task('node-serve', function () {
-    const repositoryBasePath = path.join(__dirname)
-    var Server = require('goatstone/server/one.js')
-    var s = new Server(repositoryBasePath)
-    s.start()
-})
+gulp.task('travis', ['lint', 'test', 'htmlpack', 'webpack'])
 gulp.task('webpack', function () {
-    return gulp.src('dist/note.js')
+    return gulp.src(['dist/note.js'])
         .pipe(webpack(require('./webpack.config.js')))
         .pipe(gulp.dest('dist/js'))
 })
@@ -37,20 +23,6 @@ gulp.task('htmlpack', function () {
     return gulp.src('goatstone/server/index.html')
         .pipe(gulp.dest('dist/'))
 })
-gulp.task('browser-sync', function () {
-    // TODO import library
-    const cmd = path.join(__dirname, '/node_modules/browser-sync/bin/browser-sync.js') +
-    ' start -f ' + path.join(__dirname, 'dist/js')
-    exec(cmd,
-        (error, stdout, stderr) => {
-            console.log(`stdout: ${stdout}`)
-            console.log(`stderr: ${stderr}`)
-            if (error !== null) {
-                console.log(`exec error: ${error}`)
-            }
-        })
-})
-
 gulp.task('lint', function () {
     return gulp
     .src(editFiles)

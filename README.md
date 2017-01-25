@@ -43,7 +43,7 @@ This repository is provided as an example of ES6 best practices.
 
 `npm install`
 
-Enable absolute path namespace with a sym link
+Enable absolute path namespace for imports (as in `import log from 'goatstone/log/log'` ) with a sym link
 
 `ln -s PATH_TO_PROJECT/react-rx-todo/goatstone PATH_TO_PROJECT/react-rx-todo/node_modules/goatstone`
 
@@ -51,15 +51,15 @@ On my Linux system it looks like this:
 
 `ln -s /home/goat/projects/react-rx-todo/goatstone /home/goat/projects/react-rx-todo/node_modules/goatstone`
 
+Now you are ready to run Gulp in order to lint, build, test and start a file watcher.
+
 `gulp`
 
-Browser Sync
+## Use browser-sync to display the build and see instant updates.
 
-`PATH_TO_PROJECT/react-rx-todo/node_modules/browser-sync/bin/browser-sync.js start -f PATH_TO_PROJECT/react-rx-todo/dist/js`
+In a separate terminal navigate into the `/dist` folder created by the build process. While in the `dist` folder call the `browser-sync` command using the version that has been installed into the repositories' `node_modules` folder.
 
-On my Linux system it looks like this:
-
-`/home/goat/projects/react-rx-todo/node_modules/browser-sync/bin/browser-sync.js start -f /home/goat/projects/react-rx-todo/dist/js`
+`../node_modules/.bin/browser-sync start --server --files js/bundle.js `
 
 ## Namespace
 
