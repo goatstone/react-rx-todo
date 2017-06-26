@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/goatstone/react-rx-todo.svg?branch=master)](https://travis-ci.org/goatstone/react-rx-todo)
 
-## Online currently at: [http://flint-goatstone.appspot.com/](http://flint-goatstone.appspot.com/)
+## Online currently at: [http://react-todo.goatstone.us/](http://react-todo.goatstone.us/)
 
 ## Another Todo list in React
 
